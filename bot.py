@@ -25,7 +25,8 @@ from airdrop_sources import fetch_all_airdrops, PRIORITY_CHAINS
 
 # ─── CONFIG ──────────────────────────────────────────────────────────────────
 
-BOT_TOKEN = "7638749042:AAFlTKf_7_IlTN2dmFhAbS8AY0o9Dh7GxJ8"  # ⚠️ REGENERATE THIS TOKEN
+ import os
+   BOT_TOKEN = os.environ.get("BOT_TOKEN", "")  # ⚠️ REGENERATE THIS TOKEN
 
 DAILY_DIGEST_HOUR   = 8   # UTC
 DAILY_DIGEST_MINUTE = 0
