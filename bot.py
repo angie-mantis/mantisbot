@@ -25,8 +25,9 @@ from airdrop_sources import fetch_all_airdrops, PRIORITY_CHAINS
 
 # ─── CONFIG ──────────────────────────────────────────────────────────────────
 
- import os
+import os
    BOT_TOKEN = os.environ.get("BOT_TOKEN", "")  # ⚠️ REGENERATE THIS TOKEN
+  # ⚠️ REGENERATE THIS TOKEN
 
 DAILY_DIGEST_HOUR   = 8   # UTC
 DAILY_DIGEST_MINUTE = 0
@@ -322,7 +323,9 @@ def fmt_digest(airdrops: list, new_ids: list) -> str:
 
 async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     get_user(update.effective_user.id)
+    MINI_APP_URL = os.environ.get("MINI_APP_URL", "")
     kb = [
+        [InlineKeyboardButton("🚀 Open Dashboard", web_app=WebAppInfo(url=MINI_APP_URL))] if MINI_APP_URL else [],
         [InlineKeyboardButton("📋 Today's Airdrops", callback_data="c_airdrops"),
          InlineKeyboardButton("🆕 New Today",         callback_data="c_new")],
         [InlineKeyboardButton("⚙️ Chain Filters",     callback_data="c_filter"),
@@ -331,6 +334,7 @@ async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
          InlineKeyboardButton("📊 Bot Status",        callback_data="c_status")],
         [InlineKeyboardButton("❓ Help",               callback_data="c_help")],
     ]
+    kb = [row for row in kb if row]  # remove empty rows
     await update.message.reply_text(
         "🦗 *Welcome to MantisTrackerBot!*\n\n"
         "Your personal crypto airdrop radar — powered by real data, "
