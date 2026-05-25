@@ -14,7 +14,7 @@ from datetime import datetime, time as dtime
 from typing import Optional
 
 from telegram import (
-    Update, InlineKeyboardButton, InlineKeyboardMarkup, BotCommand
+    Update, InlineKeyboardButton, InlineKeyboardMarkup, BotCommand, WebAppInfo
 )
 from telegram.ext import (
     Application, CommandHandler, CallbackQueryHandler,
